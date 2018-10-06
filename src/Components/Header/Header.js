@@ -1,13 +1,49 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
- 
-export default (props) => {
+const styles = {
+    root: {
+        flexGrow: 1,
+    },
+    grow: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginLeft: -12,
+        marginRight: 20,
+    },
+};
+
+function Header(props) {
+    const { classes } = props;
     return (
-        <div>           
-            <Button variant="contained" color="primary"> HEADER BUTTON 1 </Button>
-            <Button variant="contained" color="primary"> HEADER BUTTON 2 </Button>
-            <Button variant="contained" color="primary"> HEADER BUTTON 3 </Button>
+        <div className={classes.root}>
+            <AppBar position="static">
+                <Toolbar>
+                    {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                        <MenuIcon />
+                    </IconButton> */}
+                    <Typography variant="title" color="inherit" className={classes.grow}>
+                        Testari.me
+                    </Typography>
+                    <Button color="inherit">Button1</Button>
+                    <Button color="inherit">Button2</Button>
+                    <Button color="inherit">Button3</Button>
+                </Toolbar>
+            </AppBar>
         </div>
-    )
+    );
 }
+
+Header.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Header);
