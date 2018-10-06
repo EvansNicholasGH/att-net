@@ -42,7 +42,7 @@ class App extends Component {
 
               <Header />
               <CenteredContainer>
-                <Route exact path={routes.HOME()} component={Home} />
+                <Route exact path={routes.HOME()} component={Profile} />
                 <Route exact path={routes.PROFILE()} component={Profile} />
               </CenteredContainer>
             </div>
