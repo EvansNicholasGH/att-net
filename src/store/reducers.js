@@ -1,8 +1,10 @@
-import profileBox3 from './3box/reducer';
+import profile3Box from './3box/reducer';
 import web3 from './web3/reducer';
+import globalApp from './global-app/reducer';
 
 
 export {
-  profileBox3,
-  web3
+  globalApp,
+  profile3Box,
+  web3,
 };

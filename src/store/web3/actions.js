@@ -51,6 +51,7 @@ export function initWeb3() {
     try {
 
       if (window.web3) {
+        // window.web3 = new Web3(window.web3.currentProvider);
         if (!web3Selectors.isLibraryInitialized(getState())) {
           fetchAccounts(dispatch);
           fetchNetwork(dispatch);

@@ -10,6 +10,7 @@ const initialState = Immutable({
     web3kLocked: true,
     web3Installed: false,
     lastTransation: undefined,
+    web3Provider: undefined
 });
 
 export const TX_STATUS = {
@@ -89,6 +90,9 @@ export function getNetworkId(state) {
 }
 export function getLastTransaction(state) {
     return state.web3.lastTransation;
+}
+export function getWeb3Provider() {
+    return window.web3.currentProvider
 }
 
 export function toEther(weiAmount) {

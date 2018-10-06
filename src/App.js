@@ -1,43 +1,61 @@
 import React, { Component } from 'react';
-import Header from './Components/Header/Header';
+import Header from './components/Header';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import routes from './routes';
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Home from './Components/Home';
-
+import Home from './components/Home';
+import Profile from './components/Profile';
+import LoadingDialog from './components/LoadingDialog';
+import * as globalAppSelectors from './store/global-app/reducer';
+import Grid from '@material-ui/core/Grid';
+import CenteredContainer from './components/CenteredContainer';
 
 const styles = theme => ({
+  mainContainer: {
+    maxWidth: 640,
+    backgroundColor: 'white',
+
+  }
+});
+
+export const theme = createMuiTheme({
 
 });
 
 class App extends Component {
 
   render() {
+    const { classes } = this.props;
 
     return (
       <React.Fragment>
         <BrowserRouter>
-          <MuiThemeProvider >
+          <MuiThemeProvider theme={theme}>
             <div className="App">
+              {this.props.isLoading && <LoadingDialog />}
+
               <Header />
-              <Route exact path={routes.HOME()} component={Home} />
+              <CenteredContainer>
+                <Route exact path={routes.HOME()} component={Home} />
+                <Route exact path={routes.PROFILE()} component={Profile} />
+              </CenteredContainer>
             </div>
           </MuiThemeProvider>
         </BrowserRouter>
-      </React.Fragment>
+      </React.Fragment >
     );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    
+    isLoading: globalAppSelectors.isLoading(state),
   };
 }
 
